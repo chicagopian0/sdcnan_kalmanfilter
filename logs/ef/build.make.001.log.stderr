@@ -1,0 +1,7 @@
+[01m[K/home/uisee/learn/sdc_nan/src/ef/src/ef.cpp:3:10:[m[K [01;31m[Kfatal error: [m[KEigen/Dense: 没有那个文件或目录
+    3 | #include [01;31m[K<Eigen/Dense>[m[K
+      |          [01;31m[K^~~~~~~~~~~~~[m[K
+compilation terminated.
+make[2]: *** [CMakeFiles/kf.dir/build.make:63：CMakeFiles/kf.dir/src/ef.cpp.o] 错误 1
+make[1]: *** [CMakeFiles/Makefile2:263：CMakeFiles/kf.dir/all] 错误 2
+make: *** [Makefile:141：all] 错误 2

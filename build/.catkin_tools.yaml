@@ -1,0 +1,6 @@
+devel_space: /home/uisee/learn/sdc_nan/devel
+install: false
+install_space: /home/uisee/learn/sdc_nan/install
+profile: default
+source_space: /home/uisee/learn/sdc_nan/src
+workspace: /home/uisee/learn/sdc_nan

@@ -1,0 +1,4 @@
+[35m[1mScanning dependencies of target kf[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/kf.dir/src/ef.cpp.o[0m
+[100%] [32m[1mLinking CXX executable /home/uisee/learn/sdc_nan/devel/.private/ef/lib/ef/kf[0m
+[100%] Built target kf
