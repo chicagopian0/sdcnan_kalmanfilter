@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <Eigen/Dense>
+#include <eigen3/Eigen/Dense>
 
 
 using namespace std;
@@ -20,46 +20,6 @@ MatrixXd Q;     // process covariance matrix
 vector<VectorXd> measurements;
 void filter(VectorXd &x, MatrixXd &P);
 
-int main(){
-    // design the KF with 1D motion
-    x = VectorXd(2);
-    x << 0, 0;
-
-    P = MatrixXd(2, 2);
-    P << 1000, 0, 0, 1000;
-    
-    VectorXd(2);
-    u << 0, 0;
-
-    F = MatrixXd(2, 2);
-    F << 1, 1, 0, 1;
-
-    H = VectorXd(2);
-    H << 1, 0;
-
-    R = MatrixXd(1, 1);
-    R << 1;
-
-    I = MatrixXd::Identity(2, 2);
-
-    Q = MatrixXd(2, 2);
-    Q << 0, 0, 0, 0;
-
-
-    VectorXd single_meas(1);
-    single_meas << 1;
-    measurements.push_back(single_meas);
-    single_meas << 2;
-    measurements.push_back(single_meas);
-    single_meas << 3;
-    measurements.push_back(single_meas);
-
-    filter(x, P);
-    
-    return 0;
-}
-
-
 void filter(VectorXd &x, MatrixXd &P){
     for (unsigned int n = 0; n < measurements.size(); n++){
         VectorXd z = measurements[n];
@@ -69,7 +29,7 @@ void filter(VectorXd &x, MatrixXd &P){
         MatrixXd K = P * Ht * Si;
               
         // new state  
-        x = x + K * (z - F * x);
+        x = x + K * (z - H * x);
         P = (I - K * H) * P;
         
 
@@ -86,4 +46,42 @@ void filter(VectorXd &x, MatrixXd &P){
         cout << "x = " << endl << x << endl;
         cout << "P = " << endl << P << endl;
     }
+}
+
+int main(){
+    // design the KF with 1D motion
+    x = VectorXd(2);
+    x << 0, 0;
+
+    P = MatrixXd(2, 2);
+    P << 1000, 0, 0, 1000;
+
+    u = VectorXd(2);
+    u << 0, 0;
+    F = MatrixXd(2, 2);
+    F << 1, 1, 0, 1;
+
+    H = MatrixXd(1, 2);
+    H << 1, 0;
+
+    R = MatrixXd(1, 1);
+    R << 1;
+  
+    I = MatrixXd::Identity(2, 2);
+ 
+    Q = MatrixXd(2, 2);
+    Q << 0, 0, 0, 0;
+
+
+    VectorXd single_meas(1);
+    single_meas << 1;
+    measurements.push_back(single_meas);
+    single_meas << 2;
+    measurements.push_back(single_meas);
+    single_meas << 3;
+    measurements.push_back(single_meas);
+
+    filter(x, P);
+    
+    return 0;
 }

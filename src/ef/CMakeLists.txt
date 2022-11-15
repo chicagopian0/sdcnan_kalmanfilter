@@ -13,7 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
-find_package(cmake_modules REQUIRED)
+# find_package(cmake_modules REQUIRED)
 find_package(Eigen3 REQUIRED)
 
 ## System dependencies are found with CMake's conventions
@@ -106,7 +106,7 @@ find_package(Eigen3 REQUIRED)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
+   INCLUDE_DIRS
 #  LIBRARIES ef
 #  CATKIN_DEPENDS roscpp rospy std_msgs
 #  DEPENDS system_lib
@@ -119,7 +119,7 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+  include/ef
   ${catkin_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIR}
 )
@@ -156,8 +156,13 @@ add_definitions(${EIGEN_DEFINITIONS})
 #   ${catkin_LIBRARIES}
 # )
 
-add_executable(kf src/ef.cpp)
-target_link_libraries(kf ${catkin_LIBRARIES})
+add_executable(1dekf src/1DEKF.cpp)
+target_link_libraries(1dekf ${catkin_LIBRARIES})
+
+add_executable(2dekf src/2DEKF.cpp
+                     src/tracking.cpp
+                     src/kalman_filter.cpp)
+target_link_libraries(2dekf ${catkin_LIBRARIES})
 
 #############
 ## Install ##
