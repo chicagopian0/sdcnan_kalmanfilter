@@ -1,7 +1,8 @@
+#include <iostream>
 #include "kalman_filter.h"
 
-KalmanFilter::KalmanFilter() { };
-KalmanFilter::~KalmanFilter() { };
+KalmanFilter::KalmanFilter() { }
+KalmanFilter::~KalmanFilter() { }
 
 void KalmanFilter::Predict(){
     x_ = F_ * x_;
@@ -17,7 +18,6 @@ void KalmanFilter::Update(const VectorXd &z){
     MatrixXd Si = S.transpose();
     MatrixXd PHt = P_ * Ht;
     MatrixXd K = PHt * Si;
-
     // new estimate
     x_ = x_ + (K * y);
     long x_size = x_.size();

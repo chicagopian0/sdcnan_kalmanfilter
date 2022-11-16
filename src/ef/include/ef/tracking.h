@@ -12,6 +12,7 @@ class Tracking{
     Tracking();
     virtual ~Tracking();
     void ProcessMeasurement(const MeasurementPackage &measurement_pack);
+    void Initial_state();
     KalmanFilter kf_;
   private:
     bool is_initialized_;

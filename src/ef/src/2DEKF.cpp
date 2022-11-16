@@ -28,14 +28,14 @@ int main(){
     string line;
     // set i to get only first 3 measurements
     int i = 0;
-    while (getline(in_file, line) && i <= 3){
+    while (getline(in_file, line)){
         MeasurementPackage meas_package;
 
         istringstream iss(line);
         string sensor_type;
         iss >> sensor_type;         // read first element from the current line
         int64_t timestamp;
-        if (sensor_type.compare("L") == 0){         // laser measurment
+        if (sensor_type.compare("L") == 0 && i < 30){         // laser measurment
             // read measurements
             meas_package.sensor_type_ = MeasurementPackage::LASER;
             meas_package.raw_measurements_ = VectorXd(2);
