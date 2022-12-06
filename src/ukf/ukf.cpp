@@ -38,6 +38,8 @@ void UKF::GenerateSigmaPoints(MatrixXd *Xsig_out){
     // calculate square root of P
     MatrixXd A = P.llt().matrixL();
 
+    // std::cout << A.col(0) << std::endl;
+
     // first col equal x
     Xsig.col(0) = x;
 
